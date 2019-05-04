@@ -5,3 +5,5 @@ authors = ["marad"]
 edition = "2018"
 
 [dependencies]
+kv-crud-core = { path = "../rust-crud"}
+failure = "0.1"
