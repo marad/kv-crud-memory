@@ -4,7 +4,6 @@ extern crate failure;
 #[cfg(test)]
 mod tests;
 
-
 use std::collections::HashMap;
 use std::hash::Hash;
 
@@ -17,18 +16,19 @@ pub enum InMemoryStorageError {
 }
 
 /// In-memory storage manages it's data in simple hash map
+#[derive(Default)]
 pub struct InMemoryStorage<K, V>
-    where
-        K: Hash + Eq,
-        V: Entity<K>,
+where
+    K: Hash + Eq,
+    V: Entity<K>,
 {
     db: HashMap<K, V>,
 }
 
 impl<K, V> InMemoryStorage<K, V>
-    where
-        K: Hash + Eq,
-        V: Entity<K>,
+where
+    K: Hash + Eq,
+    V: Entity<K>,
 {
     /// Creates new empty in-memory storage
     pub fn new() -> Self {
@@ -37,9 +37,9 @@ impl<K, V> InMemoryStorage<K, V>
 }
 
 impl<K, V> Create<K, V> for InMemoryStorage<K, V>
-    where
-        K: Hash + Eq,
-        V: Entity<K>,
+where
+    K: Hash + Eq,
+    V: Entity<K>,
 {
     type Error = InMemoryStorageError;
     fn save(&mut self, entity: &V) -> Result<(), InMemoryStorageError> {
@@ -49,9 +49,9 @@ impl<K, V> Create<K, V> for InMemoryStorage<K, V>
 }
 
 impl<K, V> Read<K, V> for InMemoryStorage<K, V>
-    where
-        K: Hash + Eq + ToString,
-        V: Entity<K>,
+where
+    K: Hash + Eq + ToString,
+    V: Entity<K>,
 {
     type Error = InMemoryStorageError;
 
@@ -67,9 +67,9 @@ impl<K, V> Read<K, V> for InMemoryStorage<K, V>
 }
 
 impl<K, V> ReadWithPaginationAndSort<K, V> for InMemoryStorage<K, V>
-    where
-        K: Hash + Eq + ToString,
-        V: Entity<K> + Ord,
+where
+    K: Hash + Eq + ToString,
+    V: Entity<K> + Ord,
 {
     type Error = InMemoryStorageError;
 
@@ -98,9 +98,9 @@ impl<K, V> ReadWithPaginationAndSort<K, V> for InMemoryStorage<K, V>
 }
 
 impl<K, V> Update<K, V> for InMemoryStorage<K, V>
-    where
-        K: Hash + Eq,
-        V: Entity<K>,
+where
+    K: Hash + Eq,
+    V: Entity<K>,
 {
     type Error = InMemoryStorageError;
 
@@ -110,9 +110,9 @@ impl<K, V> Update<K, V> for InMemoryStorage<K, V>
 }
 
 impl<K, V> Delete<K, V> for InMemoryStorage<K, V>
-    where
-        K: Hash + Eq,
-        V: Entity<K>,
+where
+    K: Hash + Eq,
+    V: Entity<K>,
 {
     type Error = InMemoryStorageError;
 
@@ -127,15 +127,16 @@ impl<K, V> Delete<K, V> for InMemoryStorage<K, V>
 }
 
 impl<K, V> Crud<K, V> for InMemoryStorage<K, V>
-    where
-        K: Hash + Eq + ToString,
-        V: Entity<K> + Ord,
-{}
+where
+    K: Hash + Eq + ToString,
+    V: Entity<K> + Ord,
+{
+}
 
 impl<K, V> From<&V> for InMemoryStorage<K, V>
-    where
-        K: Hash + Eq,
-        V: Entity<K>
+where
+    K: Hash + Eq,
+    V: Entity<K>,
 {
     fn from(v: &V) -> Self {
         let mut result = Self::new();
@@ -145,9 +146,9 @@ impl<K, V> From<&V> for InMemoryStorage<K, V>
 }
 
 impl<K, V> From<&Vec<V>> for InMemoryStorage<K, V>
-    where
-        K: Hash + Eq,
-        V: Entity<K>
+where
+    K: Hash + Eq,
+    V: Entity<K>,
 {
     fn from(values: &Vec<V>) -> Self {
         let mut result = Self::new();

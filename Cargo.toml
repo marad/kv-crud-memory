@@ -6,7 +6,7 @@ edition = "2018"
 repository = "https://github.com/marad/kv-crud-memory"
 documentation = "https://docs.rs/kv-crud-memory/latest/kv_crud_memory/"
 description = "In-memory implementation for key-value store using kv-crud abstraction"
-keywords = ["key", "value", "crud", "store", "memory", "in-memory"]
+keywords = ["key", "value", "crud", "store", "in-memory"]
 license = "MIT"
 
 [dependencies]
