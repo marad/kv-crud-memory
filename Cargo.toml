@@ -1,9 +1,14 @@
 [package]
 name = "kv-crud-memory"
 version = "0.1.0"
-authors = ["marad"]
+authors = ["Marcin Radoszewski <moriturius@gmail.com>"]
 edition = "2018"
+repository = "https://github.com/marad/kv-crud-memory"
+documentation = "https://docs.rs/kv-crud-memory/latest/kv_crud_memory/"
+description = "In-memory implementation for key-value store using kv-crud abstraction"
+keywords = ["key", "value", "crud", "store", "memory", "in-memory"]
+license = "MIT"
 
 [dependencies]
-kv-crud-core = { path = "../rust-crud"}
+kv-crud-core = "0.1"
 failure = "0.1"
