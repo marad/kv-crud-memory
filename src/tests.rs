@@ -29,8 +29,7 @@ fn should_save_entity_in_storage() {
 fn should_find_by_id() {
     // given
     let data = MyData { id: 42, data: 42 };
-    let storage =
-        InMemoryStorage::from(&vec![data.clone()]);
+    let storage = InMemoryStorage::from(&vec![data.clone()]);
 
     // when
     let result = storage.find_by_id(&42u32).unwrap();
@@ -49,8 +48,9 @@ fn should_return_not_found() {
 
     // then
     match result {
-        Err(InMemoryStorageError::EntityNotFound { entity_id: id }) =>
-            assert_eq!(id, "123".to_owned()),
+        Err(InMemoryStorageError::EntityNotFound { entity_id: id }) => {
+            assert_eq!(id, "123".to_owned())
+        }
         _ => assert!(false),
     }
 }
@@ -90,11 +90,10 @@ fn should_update_entity() {
     assert_eq!(&updated, storage.db.get(&1u32).unwrap());
 }
 
-
 #[test]
 fn should_remove_entity_by_id() {
     // given
-    let mut storage = InMemoryStorage::from(&MyData {id: 1, data: 42 });
+    let mut storage = InMemoryStorage::from(&MyData { id: 1, data: 42 });
 
     // when
     storage.remove_by_id(&1).unwrap();
@@ -105,7 +104,7 @@ fn should_remove_entity_by_id() {
 
 #[test]
 fn should_remove_entity() {
-    let entity = MyData {id: 1, data: 42 };
+    let entity = MyData { id: 1, data: 42 };
     let mut storage = InMemoryStorage::from(&entity);
 
     // when
